@@ -56,7 +56,7 @@ def scan_page(url, data=None):
             current = url if phase is GET else (data or "")
             for match in re.finditer(r"((\A|[?&])(?P<parameter>[\w\[\]]+)=)(?P<value>[^&#]*)", current):
                 found, usable = False, True
-                print("* scanning %s parameter '%s'" % (phase, match.group("parameter")))
+                #print("* scanning %s parameter '%s'" % (phase, match.group("parameter")))
                 prefix, suffix = ("".join(random.sample(string.ascii_lowercase, PREFIX_SUFFIX_LENGTH)) for i in range(2))
                 for pool in (LARGER_CHAR_POOL, SMALLER_CHAR_POOL):
                     if not found:
@@ -68,7 +68,8 @@ def scan_page(url, data=None):
                                 context = re.search(regex % {"chars": re.escape(sample.group(0))}, filtered, re.I)
                                 if context and not found and sample.group(1).strip():
                                     if _contains(sample.group(1), condition):
-                                        print(" (i) %s parameter '%s' appears to be XSS vulnerable (%s)" % (phase, match.group("parameter"), info % dict((("filtering", "no" if all(char in sample.group(1) for char in LARGER_CHAR_POOL) else "some"),))))
+                                        #print(" (i) %s parameter '%s' appears to be XSS vulnerable (%s)" % (phase, match.group("parameter"), info % dict((("filtering", "no" if all(char in sample.group(1) for char in LARGER_CHAR_POOL) else "some"),))))
+                                        print("Vulnerable URL %s", url)
                                         found = retval = True
                                     break
         if not usable:

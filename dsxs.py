@@ -73,7 +73,8 @@ def scan_page(url, data=None):
                                         found = retval = True
                                     break
         if not usable:
-            print(" (x) no usable GET/POST parameters found")
+            #print(" (x) no usable GET/POST parameters found")
+            continue
     except KeyboardInterrupt:
         print("\r (x) Ctrl-C pressed")
     return retval

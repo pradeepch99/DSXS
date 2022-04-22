@@ -84,7 +84,7 @@ def init_options(proxy=None, cookie=None, ua=None, referer=None):
     urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler({'http': proxy})) if proxy else None)
 
 if __name__ == "__main__":
-    print("%s #v%s\n by: %s\n" % (NAME, VERSION, AUTHOR))
+    #print("%s #v%s\n by: %s\n" % (NAME, VERSION, AUTHOR))
     parser = optparse.OptionParser(version=VERSION)
     parser.add_option("-u", "--url", dest="url", help="Target URL (e.g. \"http://www.target.com/page.php?id=1\")")
     parser.add_option("--data", dest="data", help="POST data (e.g. \"query=test\")")
@@ -97,7 +97,5 @@ if __name__ == "__main__":
         init_options(options.proxy, options.cookie, options.ua, options.referer)
         result = scan_page(options.url if options.url.startswith("http") else "http://%s" % options.url, options.data)
         #print("\nscan results: %s vulnerabilities found" % ("possible" if result else "no"))
-        if result:
-            print("\nscan results: %s vulnerabilities found" % result)
     else:
         parser.print_help()

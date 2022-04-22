@@ -96,6 +96,7 @@ if __name__ == "__main__":
     if options.url:
         init_options(options.proxy, options.cookie, options.ua, options.referer)
         result = scan_page(options.url if options.url.startswith("http") else "http://%s" % options.url, options.data)
-        print("\nscan results: %s vulnerabilities found" % ("possible" if result else "no"))
+        #print("\nscan results: %s vulnerabilities found" % ("possible" if result else "no"))
+        print("\nscan results: %s vulnerabilities found" % ("possible" if result))
     else:
         parser.print_help()
